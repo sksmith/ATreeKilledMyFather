@@ -1,0 +1,90 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://assets/tree/Tree_phase1_02.png" type="Texture" id=1]
+[ext_resource path="res://Tree.gd" type="Script" id=2]
+[ext_resource path="res://assets/tree/Tree_phase1_03.png" type="Texture" id=3]
+[ext_resource path="res://assets/tree/Tree_phase1_04.png" type="Texture" id=4]
+[ext_resource path="res://assets/tree/Tree_phase_2_02.png" type="Texture" id=5]
+[ext_resource path="res://assets/tree/Tree_phase1_01.png" type="Texture" id=6]
+[ext_resource path="res://assets/tree/Tree_phase_2_targeted.png" type="Texture" id=7]
+[ext_resource path="res://assets/tree/Tree_phase_2_01.png" type="Texture" id=8]
+[ext_resource path="res://assets/tree/Tree_phase_2_03.png" type="Texture" id=9]
+[ext_resource path="res://assets/tree/Tree_phase1_targeted.png" type="Texture" id=10]
+[ext_resource path="res://assets/tree/Tree_phase3_01.png" type="Texture" id=11]
+[ext_resource path="res://assets/tree/Tree_phase3_03.png" type="Texture" id=12]
+[ext_resource path="res://assets/tree/Tree_phase_0.png" type="Texture" id=13]
+[ext_resource path="res://assets/tree/Tree_phase3_04.png" type="Texture" id=14]
+[ext_resource path="res://assets/tree/Tree_phase3_05.png" type="Texture" id=15]
+[ext_resource path="res://assets/tree/Tree_phase3_targeted.png" type="Texture" id=16]
+[ext_resource path="res://assets/tree/Tree_phase_2_04.png" type="Texture" id=17]
+[ext_resource path="res://assets/tree/Tree_phase3_02.png" type="Texture" id=18]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 13 ), ExtResource( 6 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": false,
+"name": "phase1",
+"speed": 3.5
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": false,
+"name": "phase1_target",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 5 ), ExtResource( 9 ), ExtResource( 17 ) ],
+"loop": false,
+"name": "phase2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": false,
+"name": "phase2_target",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 18 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 15 ) ],
+"loop": false,
+"name": "phase3",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ) ],
+"loop": false,
+"name": "phase3_target",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 50.0
+height = 24.0
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends CollisionShape2D
+
+
+func target():
+	print(\"targeted\")
+"
+
+[node name="Tree" type="Area2D" groups=["tree"]]
+collision_mask = 3
+script = ExtResource( 2 )
+
+[node name="TreeSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -3 )
+frames = SubResource( 3 )
+animation = "phase3"
+frame = 4
+playing = true
+
+[node name="TreeCollisionShape" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( -2, -4 )
+shape = SubResource( 1 )
+script = SubResource( 2 )
+
+[node name="LevelTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="area_shape_entered" from="." to="." method="_on_ShittyTree_area_shape_entered"]
+[connection signal="area_shape_exited" from="." to="." method="_on_ShittyTree_area_shape_exited"]
+[connection signal="timeout" from="LevelTimer" to="." method="_on_LevelTimer_timeout"]

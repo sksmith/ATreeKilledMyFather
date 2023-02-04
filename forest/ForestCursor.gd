@@ -1,16 +1,32 @@
 extends Area2D
 
 
-export var speed = 400 # How fast the player will move (pixels/sec).
+export var cursor_speed = 400 # How fast the player will move (pixels/sec).
+export var fine_cursor_speed = 200
+export(Resource) var tree_resource
+export(NodePath) var tree_parent_node
+
 var screen_size # Size of the game window.
 var can_plant_tree = false
+var tree_planting_node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
-
+	if tree_parent_node:
+		tree_planting_node = get_node(tree_parent_node)
 
 func _process(delta):
+	var prepare_plant = Input.is_action_pressed("f_action")
+	var do_plant = Input.is_action_just_released("f_action")
+	
+	if do_plant:
+		_try_plant_tree()
+		
+	var speed = cursor_speed
+	if prepare_plant:
+		speed = fine_cursor_speed
+	
 	var velocity = Input.get_vector("f_move_left", "f_move_right", "f_move_up", "f_move_down")
 	velocity = velocity * speed
 	
@@ -24,12 +40,25 @@ func _process(delta):
 #	else:
 #		$AnimatedSprite.stop()
 
+func _try_plant_tree():
+	if can_plant_tree:
+		_do_plant_tree()
+	else:
+		print("nope! can't plant")
 
-func _on_ForestCursor_area_entered(area):
+func _do_plant_tree():
+	if tree_planting_node:
+		var tree = tree_resource.instance()
+		tree.position = position
+		tree_planting_node.add_child(tree)
+		print("plant tree")
+
+
+func _on_ForestCursor_area_entered(_area):
 	_set_can_plant()
 
 
-func _on_ForestCursor_area_exited(area):
+func _on_ForestCursor_area_exited(_area):
 	_set_can_plant()
 
 func _set_can_plant():

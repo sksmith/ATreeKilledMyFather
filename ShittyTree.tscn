@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/lumberjack/tree_phase-3.png" type="Texture" id=1]
+[ext_resource path="res://ShittyTree.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 50.0
+height = 24.0
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends CollisionShape2D
+
+
+func target():
+	print(\"targeted\")
+"
+
+[node name="ShittyTree" type="Area2D" groups=["tree"]]
+collision_mask = 3
+script = ExtResource( 2 )
+
+[node name="TreeSprite" type="Sprite" parent="."]
+position = Vector2( 0, -3 )
+texture = ExtResource( 1 )
+
+[node name="TreeCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2( -2, -4 )
+shape = SubResource( 1 )
+script = SubResource( 2 )
+
+[connection signal="area_shape_entered" from="." to="." method="_on_ShittyTree_area_shape_entered"]
+[connection signal="area_shape_exited" from="." to="." method="_on_ShittyTree_area_shape_exited"]

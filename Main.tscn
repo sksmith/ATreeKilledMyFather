@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Lumberjack.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main.gd" type="Script" id=2]
+[ext_resource path="res://ShittyTree.tscn" type="PackedScene" id=3]
 
 [node name="Main" type="Node"]
 script = ExtResource( 2 )
@@ -10,3 +11,18 @@ script = ExtResource( 2 )
 
 [node name="LumberjackSpawnPoint" type="Position2D" parent="."]
 position = Vector2( 1704, 575 )
+
+[node name="ShittyTree" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1358, 461 )
+
+[node name="ShittyTree2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1193, 748 )
+
+[node name="ShittyTree3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 990, 440 )
+
+[node name="ShittyTree4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1073, 444 )
+
+[node name="ShittyTree5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1028, 525 )

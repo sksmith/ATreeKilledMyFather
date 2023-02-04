@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://forest/plant-seed_NO-02.png" type="Texture" id=1]
 [ext_resource path="res://forest/ForestCursor.gd" type="Script" id=2]
@@ -6,9 +6,19 @@
 [ext_resource path="res://forest/plant-seed_YES-02.png" type="Texture" id=4]
 [ext_resource path="res://forest/plant-seed_NO-01.png" type="Texture" id=5]
 [ext_resource path="res://forest/PlantedTree.tscn" type="PackedScene" id=6]
+[ext_resource path="res://forest/plant-seed_COOL-01.png" type="Texture" id=7]
+[ext_resource path="res://forest/plant-seed_COOL-02.png" type="Texture" id=8]
+[ext_resource path="res://forest/plant-seed_COOL-04.png" type="Texture" id=9]
+[ext_resource path="res://forest/plant-seed_COOL-03.png" type="Texture" id=10]
+[ext_resource path="res://forest/plant-seed_COOL-05.png" type="Texture" id=11]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "cooldown",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 5 ), ExtResource( 1 ) ],
 "loop": true,
 "name": "no",
@@ -32,14 +42,18 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
+cursor_speed = 600
+fine_cursor_speed = 300
 tree_resource = ExtResource( 6 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "no"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 rotation = 1.5708
 shape = SubResource( 2 )
 

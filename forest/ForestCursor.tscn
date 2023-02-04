@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://forest/cursor-no.png" type="Texture" id=1]
 [ext_resource path="res://forest/ForestCursor.gd" type="Script" id=2]
+[ext_resource path="res://forest/cursor-plant.png" type="Texture" id=3]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -9,12 +10,20 @@ animations = [ {
 "loop": true,
 "name": "no",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "plant",
+"speed": 5.0
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 5.0
 
 [node name="ForestCursor" type="Area2D"]
+collision_layer = 65536
+collision_mask = 65537
+input_pickable = false
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
@@ -26,3 +35,6 @@ animation = "no"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
+
+[connection signal="area_entered" from="." to="." method="_on_ForestCursor_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_ForestCursor_area_exited"]

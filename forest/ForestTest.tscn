@@ -1,7 +1,18 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://forest/ForestCursor.tscn" type="PackedScene" id=1]
+[ext_resource path="res://forest/PlantedTree.tscn" type="PackedScene" id=2]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="ForestCursor" parent="." instance=ExtResource( 1 )]
+position = Vector2( 893, 417 )
+
+[node name="PlantedTree" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1409, 249 )
+
+[node name="PlantedTree2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1239, 498 )
+
+[node name="PlantedTree3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 537, 670 )

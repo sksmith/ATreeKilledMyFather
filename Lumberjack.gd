@@ -8,6 +8,7 @@ var screen_size # Size of the game window.
 func start(pos):
 	position = pos
 	show()
+	$AnimatedSprite.play()
 	$CollisionShape2D.disabled = false
 
 func _ready():
@@ -15,34 +16,22 @@ func _ready():
 	hide()
 
 func _process(delta):
-	var velocity = Vector2.ZERO # The player's movement vector.
-	if Input.is_action_pressed("lj_move_right"):
-		velocity.x += 1
-	if Input.is_action_pressed("lj_move_left"):
-		velocity.x -= 1
-	if Input.is_action_pressed("lj_move_down"):
-		velocity.y += 1
-	if Input.is_action_pressed("lj_move_up"):
-		velocity.y -= 1
+	var velocity = Input.get_vector("lj_aim_left", "lj_aim_right", "lj_aim_up", "lj_aim_down")
 
 	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
-		$AnimatedSprite.play()
-	else:
-		$AnimatedSprite.stop()
-
+		velocity = velocity * speed
+	
 	position += velocity * delta
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
 
 	if velocity.x != 0:
 		$AnimatedSprite.animation = "walk"
-		$AnimatedSprite.flip_v = false
-		# See the note below about boolean assignment.
-		$AnimatedSprite.flip_h = velocity.x < 0
-	elif velocity.y != 0:
-		$AnimatedSprite.animation = "up"
-		$AnimatedSprite.flip_v = velocity.y > 0
+		$AnimatedSprite.flip_h = velocity.x > 0
+	else:
+		$AnimatedSprite.animation = "idle"
+		
+	$PivotPoint.rotation = velocity.angle()  #local with local axis
 
 
 func _on_Player_body_entered(body):

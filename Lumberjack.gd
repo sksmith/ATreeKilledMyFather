@@ -34,7 +34,7 @@ func _process(delta):
 	$PivotPoint.rotation = velocity.angle()  #local with local axis
 
 
-func _on_Player_body_entered(body):
+func _on_Player_body_entered(_body):
 	hide() # Player disappears after being hit.
 	emit_signal("hit")
 	# Must be deferred as we can't change physics properties on a physics callback.

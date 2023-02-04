@@ -19,23 +19,26 @@ texture = ExtResource( 4 )
 [node name="LumberjackSpawnPoint" type="Position2D" parent="."]
 position = Vector2( 1704, 575 )
 
-[node name="ShittyTree" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1358, 461 )
-
-[node name="ShittyTree2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1193, 748 )
-
-[node name="ShittyTree3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 990, 440 )
-
-[node name="ShittyTree4" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1073, 444 )
-
-[node name="ShittyTree5" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1028, 525 )
-
 [node name="HeartTree" parent="." instance=ExtResource( 5 )]
 position = Vector2( 60, 186 )
 
 [node name="Area2D" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1815, 932 )
+
+[node name="Tree" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1203, 209 )
+
+[node name="Tree2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1052, 416 )
+
+[node name="Tree3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 803, 419 )
+
+[node name="Tree4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 908, 468 )
+
+[node name="Tree5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 951, 472 )
+
+[node name="Tree6" parent="." instance=ExtResource( 3 )]
+position = Vector2( 898, 493 )

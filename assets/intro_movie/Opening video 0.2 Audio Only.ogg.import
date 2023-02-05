@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Opening video 0.2 Audio Only.ogg-5947e82d7e2379ab4b02b481de532a5a.oggstr"
+
+[deps]
+
+source_file="res://assets/intro_movie/Opening video 0.2 Audio Only.ogg"
+dest_files=[ "res://.import/Opening video 0.2 Audio Only.ogg-5947e82d7e2379ab4b02b481de532a5a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -17,6 +17,9 @@ func new_game():
 	if $PlayTheme:
 		$PlayTheme.play()
 
+func _process(_delta):
+	if Input.is_action_just_pressed("quit"):
+		get_tree().quit()
 
 func _on_HeartTree_heart_tree_died():
 	get_tree().paused = true

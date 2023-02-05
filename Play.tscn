@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://HeartTree.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Cabin.tscn" type="PackedScene" id=2]
@@ -8,6 +8,12 @@
 [ext_resource path="res://assets/Background.png" type="Texture" id=6]
 [ext_resource path="res://assets/audio/music/Main Theme 0.2.ogg" type="AudioStream" id=7]
 [ext_resource path="res://forest/ForestCursor.tscn" type="PackedScene" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 967, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 11, 539 )
 
 [node name="Play" type="Node"]
 script = ExtResource( 5 )
@@ -56,7 +62,29 @@ position = Vector2( 230, 460 )
 start_grown = true
 
 [node name="LumberjackSpawnPoint" type="Position2D" parent="World/YSort"]
-position = Vector2( 1704, 575 )
+position = Vector2( 283, 285 )
 
 [node name="Lumberjack" parent="World/YSort" instance=ExtResource( 4 )]
 position = Vector2( 1248, 294 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["tree"]]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 959, 32 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 957, 1089 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -8, 547 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 1930, 550 )
+shape = SubResource( 2 )
+
+[connection signal="heart_tree_died" from="World/YSort/HeartTree" to="." method="_on_HeartTree_heart_tree_died"]

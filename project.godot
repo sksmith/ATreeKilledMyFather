@@ -10,7 +10,7 @@ config_version=4
 
 [application]
 
-config/name="ATreeKilledMyFather"
+config/name="A Tree Killed My Father"
 run/main_scene="res://IntroMovie.tscn"
 config/icon="res://icon.png"
 

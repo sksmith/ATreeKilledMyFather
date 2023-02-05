@@ -84,6 +84,4 @@ script = SubResource( 2 )
 wait_time = 5.0
 autostart = true
 
-[connection signal="area_shape_entered" from="." to="." method="_on_ShittyTree_area_shape_entered"]
-[connection signal="area_shape_exited" from="." to="." method="_on_ShittyTree_area_shape_exited"]
 [connection signal="timeout" from="LevelTimer" to="." method="_on_LevelTimer_timeout"]

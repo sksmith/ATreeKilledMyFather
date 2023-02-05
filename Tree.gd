@@ -13,6 +13,10 @@ func _ready():
 	get_node("TargetArea/Phase2").disabled = true
 	get_node("TargetArea/Phase3").disabled = true
 
+func _process(delta):
+	if $TreeSprite.frame == 2:
+		$TreeGrowthSound.play()
+
 func target():
 	$TreeSprite.animation = "phase" + str(phase) + "_target"
 
@@ -23,12 +27,15 @@ func un_target():
 
 func hit(damage: int):
 	hit_points -= damage
-	if hit_points <= 0:
+	if is_dead():
 		die()
 		
 func die():
 	emit_signal("tree_died", self)
 	queue_free()
+
+func is_dead():
+	return hit_points <= 0
 
 func _on_LevelTimer_timeout():
 	phase += 1

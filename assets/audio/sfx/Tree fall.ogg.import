@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Tree fall.ogg-8a7933257e12b38b22ccfffb8ec78945.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/sfx/Tree fall.ogg"
+dest_files=[ "res://.import/Tree fall.ogg-8a7933257e12b38b22ccfffb8ec78945.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

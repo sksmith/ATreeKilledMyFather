@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Chop 2.ogg-99125f68315723c8c8421cf8361c7d70.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/sfx/Chop 2.ogg"
+dest_files=[ "res://.import/Chop 2.ogg-99125f68315723c8c8421cf8361c7d70.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

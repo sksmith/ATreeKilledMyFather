@@ -6,7 +6,9 @@ export var fine_cursor_speed = 200
 export(Resource) var tree_resource
 export(NodePath) var tree_parent_node
 export var planting_cooldown = 2
+export var seed_drop_sounds: Array
 
+var r = RandomNumberGenerator.new()
 var screen_size # Size of the game window.
 var can_plant_tree = false
 var tree_planting_node
@@ -59,8 +61,7 @@ func _do_plant_tree():
 	tree.position = position
 	tree_planting_node.add_child(tree)
 	_start_planting_cooldown()
-		
-		
+
 func _start_planting_cooldown():
 	on_cooldown = true
 	var cooldown_speed = $AnimatedSprite.get_sprite_frames().get_animation_speed("cooldown")
@@ -101,3 +102,6 @@ func _can_plant():
 
 	return in_planting_range && !in_tree
 
+func play_plant_seed_sound():
+	$PlantSeedSound.stream = seed_drop_sounds[r.randi() % seed_drop_sounds.size()]
+	$PlantSeedSound.play()

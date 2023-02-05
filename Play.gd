@@ -16,3 +16,8 @@ func new_game():
 	lumberjack_node.start(lumberjack_spawn_node.position)
 	if $PlayTheme:
 		$PlayTheme.play()
+
+
+func _on_HeartTree_heart_tree_died():
+	get_tree().paused = true
+	

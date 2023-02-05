@@ -96,6 +96,7 @@ frame = 4
 playing = true
 
 [node name="LevelTimer" type="Timer" parent="."]
+wait_time = 2.0
 autostart = true
 
 [node name="Phase1Collider" type="CollisionShape2D" parent="."]
@@ -135,7 +136,7 @@ position = Vector2( 4, 28 )
 shape = SubResource( 9 )
 
 [node name="TreeGrowthSound" type="AudioStreamPlayer" parent="."]
-volume_db = 1.0
+volume_db = 10.0
 bus = "Sfx Hi"
 
 [connection signal="timeout" from="LevelTimer" to="." method="_on_LevelTimer_timeout"]

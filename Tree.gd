@@ -8,6 +8,8 @@ export var tree_growth_sounds: Array
 var phase = 1
 const MAX_PHASE = 3
 
+var play_growth_sound = true
+
 func _ready():
 	$TreeSprite.animation = "phase1"
 	get_node("TargetArea/Phase1").disabled = false
@@ -41,7 +43,10 @@ func is_dead():
 	
 func set_phase(new_phase: int):
 	phase = new_phase
+	play_growth_sound = false
 	grow()
+	$TreeSprite.set_frame(4)
+	play_growth_sound = true
 
 func _on_LevelTimer_timeout():
 	phase += 1
@@ -68,7 +73,8 @@ func grow():
 		emit_signal("tree_grown", self)
 		var growth_sound = tree_growth_sounds[randi() % tree_growth_sounds.size()]
 		$LevelTimer.stop()
-		$TreeGrowthSound.stream = growth_sound
-		yield($TreeSprite, "animation_finished")
-		$TreeGrowthSound.play()
+		if play_growth_sound:
+			$TreeGrowthSound.stream = growth_sound
+			yield(get_tree().create_timer(0.8), "timeout")
+			$TreeGrowthSound.play()
 		

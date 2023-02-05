@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/hearttree/Heart-Tree.png" type="Texture" id=1]
 [ext_resource path="res://assets/hearttree/heart_06.png" type="Texture" id=2]
@@ -20,9 +20,6 @@ animations = [ {
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 114, 181.5 )
-
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 215.5, 174 )
 
 [sub_resource type="CapsuleShape2D" id=4]
 radius = 15.0
@@ -55,10 +52,11 @@ shape = SubResource( 2 )
 collision_layer = 65536
 collision_mask = 65536
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlantingBlocker"]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="PlantingBlocker"]
+visible = false
 position = Vector2( 0.000512524, -4.50002 )
 rotation = 1.5708
-shape = SubResource( 3 )
+polygon = PoolVector2Array( -205.5, 121.001, 50.5005, 133, 142.5, 128, 203.501, 179, 222.501, 138, 187.5, 25.9998, 221.5, 3.99971, 155.5, -82.0001, 180.5, -130, 171.499, -181, 133.5, -133, 64.4996, -109, -23.5004, -103.999, -208.5, -107.999 )
 
 [node name="TargetArea" type="Area2D" parent="." groups=["tree"]]
 visible = false

@@ -5,7 +5,7 @@ export var cursor_speed = 400 # How fast the player will move (pixels/sec).
 export var fine_cursor_speed = 200
 export(Resource) var tree_resource
 export(NodePath) var tree_parent_node
-export var planting_cooldown = 2
+export(float) var planting_cooldown: float = 1.5
 export var seed_drop_sounds: Array
 
 var r = RandomNumberGenerator.new()

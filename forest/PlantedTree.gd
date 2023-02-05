@@ -24,6 +24,4 @@ extends Node2D
 
 func _on_Tree_tree_grown(tree):
 	if tree == $Tree:
-		$PlantingRange.visible = true
-		$PlantingRange.monitorable = true
-		print("my tree grew!")
+		$PlantingRange.enable_planting()

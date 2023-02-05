@@ -15,9 +15,7 @@ __meta__ = {
 }
 
 [node name="PlantingRange" parent="." instance=ExtResource( 4 )]
-visible = false
 z_index = -1000
-monitorable = false
 
 [node name="Tree" parent="." instance=ExtResource( 1 )]
 position = Vector2( 0, -48 )

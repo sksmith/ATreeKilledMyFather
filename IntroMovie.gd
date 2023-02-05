@@ -6,5 +6,5 @@ func _ready():
 	$IntroMusic.play()
 
 func _process(delta):
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("any_confirm"):
 		get_tree().change_scene("res://Title.tscn")

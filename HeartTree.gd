@@ -1,4 +1,4 @@
-extends Area2D
+extends StaticBody2D
 
 export var hit_points = 50
 signal heart_tree_died()

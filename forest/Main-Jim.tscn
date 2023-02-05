@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Lumberjack.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Main.gd" type="Script" id=2]
+[ext_resource path="res://forest/ForestCursor.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/Background.png" type="Texture" id=4]
+[ext_resource path="res://HeartTree.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Cabin.tscn" type="PackedScene" id=6]
+[ext_resource path="res://forest/PlantedTree.tscn" type="PackedScene" id=7]
+
+[node name="Main" type="Node"]
+script = ExtResource( 2 )
+lumberjack = NodePath("World/YSort/Lumberjack")
+lumberjack_spawn = NodePath("World/YSort/LumberjackSpawnPoint")
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Background" type="Sprite" parent="World"]
+position = Vector2( 960, 540 )
+z_index = -2000
+texture = ExtResource( 4 )
+
+[node name="YSort" type="YSort" parent="World"]
+
+[node name="HeartTree" parent="World/YSort" instance=ExtResource( 5 )]
+position = Vector2( 60, 186 )
+
+[node name="Cabin" parent="World/YSort" instance=ExtResource( 6 )]
+position = Vector2( 1812, 1040 )
+
+[node name="LumberjackSpawnPoint" type="Position2D" parent="World/YSort"]
+position = Vector2( 1702, 589 )
+
+[node name="Trees" type="YSort" parent="World/YSort"]
+
+[node name="PlantedTree" parent="World/YSort/Trees" instance=ExtResource( 7 )]
+position = Vector2( 280, 267 )
+
+[node name="PlantedTree3" parent="World/YSort/Trees" instance=ExtResource( 7 )]
+position = Vector2( 128, 421 )
+
+[node name="PlantedTree4" parent="World/YSort/Trees" instance=ExtResource( 7 )]
+position = Vector2( 1541, 632 )
+
+[node name="PlantedTree5" parent="World/YSort/Trees" instance=ExtResource( 7 )]
+position = Vector2( 1514, 554 )
+
+[node name="PlantedTree2" parent="World/YSort/Trees" instance=ExtResource( 7 )]
+position = Vector2( 314, 411 )
+
+[node name="Lumberjack" parent="World/YSort" instance=ExtResource( 1 )]
+position = Vector2( 1610, 546 )
+
+[node name="ForestCursor" parent="." instance=ExtResource( 3 )]
+position = Vector2( 921, 500 )
+tree_parent_node = NodePath("../World/YSort/Trees")

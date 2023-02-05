@@ -1,28 +1,29 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Lumberjack.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Main.gd" type="Script" id=2]
+[ext_resource path="res://HeartTree.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Cabin.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Tree.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/Background.png" type="Texture" id=4]
-[ext_resource path="res://HeartTree.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Cabin.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Lumberjack.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Main.gd" type="Script" id=5]
+[ext_resource path="res://assets/Background.png" type="Texture" id=6]
+[ext_resource path="res://assets/audio/music/Main Theme 0.2.ogg" type="AudioStream" id=7]
 
 [node name="Main" type="Node"]
-script = ExtResource( 2 )
+script = ExtResource( 5 )
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 960, 540 )
-texture = ExtResource( 4 )
+texture = ExtResource( 6 )
 
-[node name="Lumberjack" parent="." instance=ExtResource( 1 )]
+[node name="Lumberjack" parent="." instance=ExtResource( 4 )]
 
 [node name="LumberjackSpawnPoint" type="Position2D" parent="."]
 position = Vector2( 1704, 575 )
 
-[node name="HeartTree" parent="." instance=ExtResource( 5 )]
+[node name="HeartTree" parent="." instance=ExtResource( 1 )]
 position = Vector2( 113, 191 )
 
-[node name="Area2D" parent="." instance=ExtResource( 6 )]
+[node name="Area2D" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1815, 932 )
 
 [node name="Tree" parent="." instance=ExtResource( 3 )]
@@ -45,3 +46,6 @@ position = Vector2( 951, 472 )
 
 [node name="Tree6" parent="." instance=ExtResource( 3 )]
 position = Vector2( 898, 493 )
+
+[node name="PlayTheme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )

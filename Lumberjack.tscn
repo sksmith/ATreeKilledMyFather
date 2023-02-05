@@ -165,8 +165,6 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=56]
-radius = 8.0
-height = 18.0
 
 [sub_resource type="RectangleShape2D" id=57]
 extents = Vector2( 13.5, 2 )
@@ -175,7 +173,6 @@ extents = Vector2( 13.5, 2 )
 collision_layer = 3
 collision_mask = 3
 script = ExtResource( 2 )
-speed = 200
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -16 )
@@ -203,7 +200,6 @@ texture = ExtResource( 3 )
 [node name="ReticleCollider" type="CollisionShape2D" parent="PivotPoint/LumberjackReticle" groups=["tree"]]
 show_behind_parent = true
 position = Vector2( 25.5, 0 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 57 )
 
 [connection signal="area_entered" from="PivotPoint/LumberjackReticle" to="." method="_on_LumberjackReticle_area_entered"]

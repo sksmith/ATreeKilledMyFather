@@ -53,28 +53,28 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=4]
-radius = 6.03708
-height = 4.61237
+radius = 4.69254
+height = 0.720594
 
 [sub_resource type="CapsuleShape2D" id=5]
-radius = 6.09554
-height = 21.738
+radius = 5.06945
+height = 21.8947
 
 [sub_resource type="CapsuleShape2D" id=6]
-radius = 8.40826
-height = 45.9734
+radius = 6.00868
+height = 38.0103
 
 [sub_resource type="CapsuleShape2D" id=7]
-radius = 20.0
-height = 12.0
+radius = 15.0
+height = 28.0
 
 [sub_resource type="CapsuleShape2D" id=8]
-radius = 25.0
-height = 10.0
+radius = 31.0
+height = 18.0
 
 [sub_resource type="CapsuleShape2D" id=9]
-radius = 43.0
-height = 16.0
+radius = 57.0
+height = 12.0
 
 [node name="Tree" type="StaticBody2D" groups=["tree"]]
 collision_layer = 3

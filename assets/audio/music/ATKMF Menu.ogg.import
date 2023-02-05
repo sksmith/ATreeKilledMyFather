@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ATKMF Menu.ogg-28c65afd495a66820a748765893309a1.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/music/ATKMF Menu.ogg"
+dest_files=[ "res://.import/ATKMF Menu.ogg-28c65afd495a66820a748765893309a1.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

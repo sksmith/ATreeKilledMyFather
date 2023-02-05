@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export var speed = 4 # How fast the player will move (pixels/sec).
+export var speed = 200 # How fast the player will move (pixels/sec).
 export var attack_duration_ms = 0.5
 var screen_size # Size of the game window.
 var is_attacking = false

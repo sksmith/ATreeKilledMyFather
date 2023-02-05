@@ -1,4 +1,4 @@
-extends Area2D
+extends StaticBody2D
 
 export var hit_points = 5
 var phase = 1
@@ -6,6 +6,9 @@ const MAX_PHASE = 3
 
 func _ready():
 	$TreeSprite.animation = "phase1"
+	get_node("TargetArea/Phase1").disabled = false
+	get_node("TargetArea/Phase2").disabled = true
+	get_node("TargetArea/Phase3").disabled = true
 
 func target():
 	$TreeSprite.animation = "phase" + str(phase) + "_target"
@@ -25,5 +28,19 @@ func _on_LevelTimer_timeout():
 		return
 	
 	phase += 1
-	print("tree increased phase ", str(phase-1), " -> ", str(phase))
-	$TreeSprite.animation = "phase" + str(phase)
+	
+	if phase == 1:
+		$TreeSprite.animation = "phase1"
+		get_node("TargetArea/Phase1").disabled = false
+		get_node("TargetArea/Phase2").disabled = true
+		get_node("TargetArea/Phase3").disabled = true
+	elif phase == 2:
+		$TreeSprite.animation = "phase2"
+		get_node("TargetArea/Phase1").disabled = true
+		get_node("TargetArea/Phase2").disabled = false
+		get_node("TargetArea/Phase3").disabled = true
+	else:
+		$TreeSprite.animation = "phase3"
+		get_node("TargetArea/Phase1").disabled = true
+		get_node("TargetArea/Phase2").disabled = true
+		get_node("TargetArea/Phase3").disabled = false

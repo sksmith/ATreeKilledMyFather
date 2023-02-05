@@ -4,6 +4,8 @@
 [ext_resource path="res://Lumberjack.gd" type="Script" id=2]
 [ext_resource path="res://assets/lumberjack/reticle.png" type="Texture" id=3]
 
+[sub_resource type="CapsuleShape2D" id=56]
+
 [sub_resource type="AtlasTexture" id=23]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 164, 83, 82 )
@@ -167,32 +169,33 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=21]
 radius = 2.0
 
-[sub_resource type="CapsuleShape2D" id=22]
-radius = 4.99997
-height = 22.0001
-
-[node name="Lumberjack" type="Area2D"]
+[node name="Lumberjack" type="KinematicBody2D"]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource( 2 )
+
+[node name="LumberjackCollider" type="CollisionShape2D" parent="."]
+shape = SubResource( 56 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "wood_idle"
 
-[node name="PivotPoint" type="Position2D" parent="."]
+[node name="PivotPoint" type="Position2D" parent="." groups=["tree"]]
 
-[node name="LumberjackReticle" type="Area2D" parent="PivotPoint"]
-collision_mask = 2
+[node name="LumberjackReticle" type="Area2D" parent="PivotPoint" groups=["tree"]]
+collision_layer = 16
+collision_mask = 16
+priority = 1.0
 
 [node name="Reticle" type="Sprite" parent="PivotPoint/LumberjackReticle"]
 position = Vector2( 36, 0 )
 scale = Vector2( 0.0255555, 0.0277778 )
 texture = ExtResource( 3 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PivotPoint/LumberjackReticle"]
+[node name="ReticleCollider" type="CollisionShape2D" parent="PivotPoint/LumberjackReticle" groups=["tree"]]
+show_behind_parent = true
 position = Vector2( 36, 0 )
 shape = SubResource( 21 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 15 )
-rotation = -1.57079
-shape = SubResource( 22 )
+[connection signal="area_entered" from="PivotPoint/LumberjackReticle" to="." method="_on_LumberjackReticle_area_entered"]

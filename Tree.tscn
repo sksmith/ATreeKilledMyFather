@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://assets/tree/Tree_phase1_02.png" type="Texture" id=1]
 [ext_resource path="res://Tree.gd" type="Script" id=2]
@@ -52,37 +52,75 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 50.0
-height = 24.0
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 4.69254
+height = 0.720594
 
-[sub_resource type="GDScript" id=2]
-script/source = "extends CollisionShape2D
+[sub_resource type="CapsuleShape2D" id=5]
+radius = 5.06945
+height = 21.8947
 
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 6.00868
+height = 38.0103
 
-func target():
-	print(\"targeted\")
-"
+[sub_resource type="CapsuleShape2D" id=7]
+radius = 15.0
+height = 28.0
 
-[node name="Tree" type="Area2D" groups=["tree"]]
+[sub_resource type="CapsuleShape2D" id=8]
+radius = 31.0
+height = 18.0
+
+[sub_resource type="CapsuleShape2D" id=9]
+radius = 57.0
+height = 12.0
+
+[node name="Tree" type="StaticBody2D" groups=["tree"]]
+collision_layer = 3
 collision_mask = 3
 script = ExtResource( 2 )
 
 [node name="TreeSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0, -3 )
 frames = SubResource( 3 )
-animation = "phase3"
+animation = "phase1"
 frame = 4
 playing = true
-
-[node name="TreeCollisionShape" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( -2, -4 )
-shape = SubResource( 1 )
-script = SubResource( 2 )
 
 [node name="LevelTimer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
 
+[node name="Phase1Collider" type="CollisionShape2D" parent="."]
+position = Vector2( 1, 56 )
+rotation = 1.55171
+shape = SubResource( 4 )
+
+[node name="Phase2Collider" type="CollisionShape2D" parent="."]
+position = Vector2( 3, 56 )
+rotation = 1.56209
+shape = SubResource( 5 )
+
+[node name="Phase3Collider" type="CollisionShape2D" parent="."]
+position = Vector2( 4, 56 )
+rotation = 1.55299
+shape = SubResource( 6 )
+
+[node name="TargetArea" type="Area2D" parent="." groups=["tree"]]
+collision_layer = 16
+collision_mask = 16
+
+[node name="Phase1" type="CollisionShape2D" parent="TargetArea"]
+position = Vector2( 1, 32 )
+shape = SubResource( 7 )
+
+[node name="Phase2" type="CollisionShape2D" parent="TargetArea"]
+position = Vector2( 2, 22 )
+shape = SubResource( 8 )
+
+[node name="Phase3" type="CollisionShape2D" parent="TargetArea"]
+position = Vector2( 3, 0 )
+shape = SubResource( 9 )
+
 [connection signal="timeout" from="LevelTimer" to="." method="_on_LevelTimer_timeout"]
+[connection signal="area_entered" from="TargetArea" to="." method="_on_TargetArea_area_entered"]

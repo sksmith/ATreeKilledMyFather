@@ -1,6 +1,6 @@
-extends Area2D
+extends KinematicBody2D
 
-export var speed = 400 # How fast the player will move (pixels/sec).
+export var speed = 4 # How fast the player will move (pixels/sec).
 export var attack_duration_ms = 0.5
 var screen_size # Size of the game window.
 var is_attacking = false
@@ -11,7 +11,6 @@ func start(pos):
 	position = pos
 	show()
 	$AnimatedSprite.play()
-	$CollisionShape2D.disabled = false
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -20,6 +19,7 @@ func _ready():
 func _process(delta):
 	update_target_tree()
 
+func _physics_process(delta):
 	if !is_attacking && Input.is_action_pressed("attack"):
 		is_attacking = true
 		current_attack_time = 0
@@ -34,8 +34,6 @@ func _process(delta):
 			
 			if target_tree != null:
 				target_tree.hit(2)
-#			if !is_instance_valid(target_tree):
-#				target_tree = null
 	else:
 		var velocity = Input.get_vector("lj_aim_left", "lj_aim_right", "lj_aim_up", "lj_aim_down")
 
@@ -43,9 +41,7 @@ func _process(delta):
 			$PivotPoint.rotation = velocity.angle()  #local with local axis
 			velocity = velocity * speed
 		
-		position += velocity * delta
-		position.x = clamp(position.x, 0, screen_size.x)
-		position.y = clamp(position.y, 0, screen_size.y)
+		move_and_slide(velocity)
 
 		if velocity.x != 0:
 			$AnimatedSprite.animation = "walk"
@@ -53,23 +49,17 @@ func _process(delta):
 		else:
 			$AnimatedSprite.animation = "idle"
 
-func _on_Player_body_entered(_body):
-	hide() # Player disappears after being hit.
-	emit_signal("hit")
-	# Must be deferred as we can't change physics properties on a physics callback.
-	$CollisionShape2D.set_deferred("disabled", true)
-
 func update_target_tree():
 	var chosen_tree
 	for overlapped in $PivotPoint/LumberjackReticle.get_overlapping_areas():
-		if overlapped == target_tree:
+		if overlapped.get_parent() == target_tree:
 			chosen_tree = target_tree
 			break
 	
 	if chosen_tree == null:
 		for overlapped in $PivotPoint/LumberjackReticle.get_overlapping_areas():
-			if overlapped.is_in_group("tree"):
-				chosen_tree = overlapped
+			if overlapped.get_parent().is_in_group("tree"):
+				chosen_tree = overlapped.get_parent()
 				break
 	
 	if chosen_tree != target_tree:
@@ -80,3 +70,9 @@ func update_target_tree():
 		
 		if target_tree != null:
 			target_tree.target()
+
+
+func _on_LumberjackReticle_area_entered(area):
+#	var bodies = $PivotPoint/LumberjackReticle.get_overlapping_areas()
+	print("lumberjack area entered")
+	pass # Replace with function body.

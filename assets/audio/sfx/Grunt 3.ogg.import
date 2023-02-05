@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Grunt 3.ogg-7cd0fc805383412d8e26616f1ad606fd.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/sfx/Grunt 3.ogg"
+dest_files=[ "res://.import/Grunt 3.ogg-7cd0fc805383412d8e26616f1ad606fd.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

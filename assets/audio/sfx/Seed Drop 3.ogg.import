@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Seed Drop 3.ogg-2f436f11688cc4a752001bda4787c61b.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/sfx/Seed Drop 3.ogg"
+dest_files=[ "res://.import/Seed Drop 3.ogg-2f436f11688cc4a752001bda4787c61b.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

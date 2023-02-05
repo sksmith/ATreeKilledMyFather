@@ -49,3 +49,4 @@ position = Vector2( 898, 493 )
 
 [node name="PlayTheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
+bus = "Music"

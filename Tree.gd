@@ -38,10 +38,16 @@ func die():
 
 func is_dead():
 	return hit_points <= 0
+	
+func set_phase(new_phase: int):
+	phase = new_phase
+	grow()
 
 func _on_LevelTimer_timeout():
 	phase += 1
+	grow()
 	
+func grow():
 	if phase == 1:
 		$TreeSprite.animation = "phase1"
 		get_node("TargetArea/Phase1").disabled = false

@@ -40,25 +40,20 @@ position = Vector2( 113, 191 )
 [node name="Trees" type="YSort" parent="World/YSort"]
 
 [node name="PlantedTree" parent="World/YSort/Trees" instance=ExtResource( 3 )]
-position = Vector2( 1464, 544 )
+position = Vector2( 373, 195 )
+start_grown = true
 
 [node name="PlantedTree2" parent="World/YSort/Trees" instance=ExtResource( 3 )]
-position = Vector2( 710, 608 )
+position = Vector2( 349, 342 )
+start_grown = true
 
 [node name="PlantedTree3" parent="World/YSort/Trees" instance=ExtResource( 3 )]
-position = Vector2( 384, 266 )
+position = Vector2( 73, 464 )
+start_grown = true
 
 [node name="PlantedTree4" parent="World/YSort/Trees" instance=ExtResource( 3 )]
-position = Vector2( 260, 510 )
-
-[node name="PlantedTree5" parent="World/YSort/Trees" instance=ExtResource( 3 )]
-position = Vector2( 902, 766 )
-
-[node name="PlantedTree6" parent="World/YSort/Trees" instance=ExtResource( 3 )]
-position = Vector2( 752, 498 )
-
-[node name="PlantedTree7" parent="World/YSort/Trees" instance=ExtResource( 3 )]
-position = Vector2( 732, 552 )
+position = Vector2( 230, 460 )
+start_grown = true
 
 [node name="LumberjackSpawnPoint" type="Position2D" parent="World/YSort"]
 position = Vector2( 1704, 575 )

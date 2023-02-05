@@ -55,7 +55,6 @@ seed_drop_sounds = [ ExtResource( 14 ), ExtResource( 17 ), ExtResource( 13 ), Ex
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "no"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -64,6 +63,7 @@ rotation = 1.5708
 shape = SubResource( 2 )
 
 [node name="PlantSeedSound" type="AudioStreamPlayer" parent="."]
+volume_db = -6.469
 
 [connection signal="area_entered" from="." to="." method="_on_ForestCursor_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_ForestCursor_area_exited"]

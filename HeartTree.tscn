@@ -43,7 +43,7 @@ position = Vector2( 8, -72 )
 scale = Vector2( 0.915584, 0.943679 )
 frames = SubResource( 1 )
 animation = "beat"
-frame = 1
+frame = 5
 playing = true
 
 [node name="HeartTreeSprite" type="Sprite" parent="."]

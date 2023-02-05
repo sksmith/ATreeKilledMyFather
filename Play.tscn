@@ -22,6 +22,7 @@ lumberjack_spawn = NodePath("World/YSort/LumberjackSpawnPoint")
 
 [node name="PlayTheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
+bus = "Music"
 
 [node name="World" type="Node2D" parent="."]
 
@@ -31,7 +32,7 @@ z_index = -2000
 texture = ExtResource( 6 )
 
 [node name="ForestCursor" parent="World" instance=ExtResource( 8 )]
-position = Vector2( 1126, 686 )
+position = Vector2( 372, 454 )
 z_index = 100
 tree_parent_node = NodePath("../YSort/Trees")
 
@@ -49,6 +50,15 @@ position = Vector2( 113, 191 )
 position = Vector2( 373, 195 )
 start_grown = true
 
+[node name="PlantedTree5" parent="World/YSort/Trees" instance=ExtResource( 3 )]
+position = Vector2( 1049, 195 )
+
+[node name="PlantedTree6" parent="World/YSort/Trees" instance=ExtResource( 3 )]
+position = Vector2( 932, 639 )
+
+[node name="PlantedTree7" parent="World/YSort/Trees" instance=ExtResource( 3 )]
+position = Vector2( 567, 986 )
+
 [node name="PlantedTree2" parent="World/YSort/Trees" instance=ExtResource( 3 )]
 position = Vector2( 349, 342 )
 start_grown = true
@@ -62,7 +72,7 @@ position = Vector2( 230, 460 )
 start_grown = true
 
 [node name="LumberjackSpawnPoint" type="Position2D" parent="World/YSort"]
-position = Vector2( 283, 285 )
+position = Vector2( 1815, 966 )
 
 [node name="Lumberjack" parent="World/YSort" instance=ExtResource( 4 )]
 position = Vector2( 1248, 294 )

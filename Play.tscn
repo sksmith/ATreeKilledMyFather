@@ -65,4 +65,3 @@ position = Vector2( 1704, 575 )
 
 [node name="Lumberjack" parent="World/YSort" instance=ExtResource( 4 )]
 position = Vector2( 1248, 294 )
-bus = "Music"

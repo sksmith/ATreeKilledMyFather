@@ -64,7 +64,6 @@ func _do_plant_tree():
 
 func _start_planting_cooldown():
 	on_cooldown = true
-	var cooldown_speed = $AnimatedSprite.get_sprite_frames().get_animation_speed("cooldown")
 	$AnimatedSprite.play("cooldown")
 	yield(get_tree().create_timer(planting_cooldown), "timeout")
 	on_cooldown = false

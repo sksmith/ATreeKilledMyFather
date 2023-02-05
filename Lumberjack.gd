@@ -55,7 +55,7 @@ func _physics_process(delta):
 			$PivotPoint.rotation = velocity.angle()  #local with local axis
 			velocity = velocity * speed
 		
-		move_and_slide(velocity)
+		velocity = move_and_slide(velocity)
 
 		if velocity.x != 0:
 			if !is_walking:

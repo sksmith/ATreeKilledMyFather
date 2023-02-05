@@ -1,14 +1,14 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Lumberjack.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Main.gd" type="Script" id=2]
+[ext_resource path="res://Play.gd" type="Script" id=2]
 [ext_resource path="res://forest/ForestCursor.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/Background.png" type="Texture" id=4]
 [ext_resource path="res://HeartTree.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Cabin.tscn" type="PackedScene" id=6]
 [ext_resource path="res://forest/PlantedTree.tscn" type="PackedScene" id=7]
 
-[node name="Main" type="Node"]
+[node name="Play" type="Node"]
 script = ExtResource( 2 )
 lumberjack = NodePath("World/YSort/Lumberjack")
 lumberjack_spawn = NodePath("World/YSort/LumberjackSpawnPoint")

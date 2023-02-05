@@ -1,6 +1,7 @@
 extends StaticBody2D
 
 signal tree_grown(tree)
+signal tree_died(tree)
 
 export var hit_points = 5
 var phase = 1
@@ -23,7 +24,11 @@ func un_target():
 func hit(damage: int):
 	hit_points -= damage
 	if hit_points <= 0:
-		queue_free()
+		die()
+		
+func die():
+	emit_signal("tree_died", self)
+	queue_free()
 
 func _on_LevelTimer_timeout():
 	phase += 1

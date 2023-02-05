@@ -15,6 +15,10 @@ var on_cooldown = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
+	var sprite_frames = $AnimatedSprite.get_sprite_frames()
+	var cooldown_frames = sprite_frames.get_frame_count("cooldown")
+	var cooldown_speed = cooldown_frames / float(planting_cooldown)
+	sprite_frames.set_animation_speed("cooldown", cooldown_speed)
 	if tree_parent_node:
 		tree_planting_node = get_node(tree_parent_node)
 
@@ -59,6 +63,7 @@ func _do_plant_tree():
 		
 func _start_planting_cooldown():
 	on_cooldown = true
+	var cooldown_speed = $AnimatedSprite.get_sprite_frames().get_animation_speed("cooldown")
 	$AnimatedSprite.play("cooldown")
 	yield(get_tree().create_timer(planting_cooldown), "timeout")
 	on_cooldown = false

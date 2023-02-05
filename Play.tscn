@@ -1,51 +1,67 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://HeartTree.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Cabin.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Tree.tscn" type="PackedScene" id=3]
+[ext_resource path="res://forest/PlantedTree.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Lumberjack.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Main.gd" type="Script" id=5]
+[ext_resource path="res://Play.gd" type="Script" id=5]
 [ext_resource path="res://assets/Background.png" type="Texture" id=6]
 [ext_resource path="res://assets/audio/music/Main Theme 0.2.ogg" type="AudioStream" id=7]
+[ext_resource path="res://forest/ForestCursor.tscn" type="PackedScene" id=8]
 
-[node name="Main" type="Node"]
+[node name="Play" type="Node"]
 script = ExtResource( 5 )
-
-[node name="Background" type="Sprite" parent="."]
-position = Vector2( 960, 540 )
-texture = ExtResource( 6 )
-
-[node name="Lumberjack" parent="." instance=ExtResource( 4 )]
-
-[node name="LumberjackSpawnPoint" type="Position2D" parent="."]
-position = Vector2( 1704, 575 )
-
-[node name="HeartTree" parent="." instance=ExtResource( 1 )]
-position = Vector2( 113, 191 )
-
-[node name="Area2D" parent="." instance=ExtResource( 2 )]
-position = Vector2( 1815, 932 )
-
-[node name="Tree" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1203, 209 )
-
-[node name="Tree7" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1650, 675 )
-
-[node name="Tree2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1052, 416 )
-
-[node name="Tree3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 803, 419 )
-
-[node name="Tree4" parent="." instance=ExtResource( 3 )]
-position = Vector2( 908, 468 )
-
-[node name="Tree5" parent="." instance=ExtResource( 3 )]
-position = Vector2( 951, 472 )
-
-[node name="Tree6" parent="." instance=ExtResource( 3 )]
-position = Vector2( 898, 493 )
+lumberjack = NodePath("World/YSort/Lumberjack")
+lumberjack_spawn = NodePath("World/YSort/LumberjackSpawnPoint")
 
 [node name="PlayTheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Background" type="Sprite" parent="World"]
+position = Vector2( 960, 540 )
+z_index = -2000
+texture = ExtResource( 6 )
+
+[node name="ForestCursor" parent="World" instance=ExtResource( 8 )]
+position = Vector2( 1126, 686 )
+z_index = 100
+tree_parent_node = NodePath("../YSort/Trees")
+
+[node name="YSort" type="YSort" parent="World"]
+
+[node name="Cabin" parent="World/YSort" instance=ExtResource( 2 )]
+position = Vector2( 1815, 932 )
+
+[node name="HeartTree" parent="World/YSort" instance=ExtResource( 1 )]
+position = Vector2( 113, 191 )
+
+[node name="Trees" type="YSort" parent="World/YSort"]
+
+[node name="PlantedTree" parent="World/YSort/Trees" instance=ExtResource( 3 )]
+position = Vector2( 1464, 544 )
+
+[node name="PlantedTree2" parent="World/YSort/Trees" instance=ExtResource( 3 )]
+position = Vector2( 710, 608 )
+
+[node name="PlantedTree3" parent="World/YSort/Trees" instance=ExtResource( 3 )]
+position = Vector2( 384, 266 )
+
+[node name="PlantedTree4" parent="World/YSort/Trees" instance=ExtResource( 3 )]
+position = Vector2( 260, 510 )
+
+[node name="PlantedTree5" parent="World/YSort/Trees" instance=ExtResource( 3 )]
+position = Vector2( 902, 766 )
+
+[node name="PlantedTree6" parent="World/YSort/Trees" instance=ExtResource( 3 )]
+position = Vector2( 752, 498 )
+
+[node name="PlantedTree7" parent="World/YSort/Trees" instance=ExtResource( 3 )]
+position = Vector2( 732, 552 )
+
+[node name="LumberjackSpawnPoint" type="Position2D" parent="World/YSort"]
+position = Vector2( 1704, 575 )
+
+[node name="Lumberjack" parent="World/YSort" instance=ExtResource( 4 )]
+position = Vector2( 1248, 294 )

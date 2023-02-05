@@ -28,4 +28,5 @@ position = Vector2( 5, 3 )
 rotation = 1.5708
 shape = SubResource( 1 )
 
+[connection signal="tree_died" from="Tree" to="." method="_on_Tree_tree_died"]
 [connection signal="tree_grown" from="Tree" to="." method="_on_Tree_tree_grown"]

@@ -25,3 +25,8 @@ extends Node2D
 func _on_Tree_tree_grown(tree):
 	if tree == $Tree:
 		$PlantingRange.enable_planting()
+
+
+func _on_Tree_tree_died(tree):
+	if tree == $Tree:
+		queue_free()

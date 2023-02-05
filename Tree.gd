@@ -4,6 +4,7 @@ signal tree_grown(tree)
 signal tree_died(tree)
 
 export var hit_points = 5
+export var tree_growth_sounds: Array
 var phase = 1
 const MAX_PHASE = 3
 
@@ -59,4 +60,9 @@ func _on_LevelTimer_timeout():
 
 	if phase >= MAX_PHASE:
 		emit_signal("tree_grown", self)
+		var growth_sound = tree_growth_sounds[randi() % tree_growth_sounds.size()]
 		$LevelTimer.stop()
+		$TreeGrowthSound.stream = growth_sound
+		yield($TreeSprite, "animation_finished")
+		$TreeGrowthSound.play()
+		

@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+signal tree_grown(tree)
+
 export var hit_points = 5
 var phase = 1
 const MAX_PHASE = 3
@@ -24,9 +26,6 @@ func hit(damage: int):
 		queue_free()
 
 func _on_LevelTimer_timeout():
-	if phase >= MAX_PHASE:
-		return
-	
 	phase += 1
 	
 	if phase == 1:
@@ -44,3 +43,7 @@ func _on_LevelTimer_timeout():
 		get_node("TargetArea/Phase1").disabled = true
 		get_node("TargetArea/Phase2").disabled = true
 		get_node("TargetArea/Phase3").disabled = false
+
+	if phase >= MAX_PHASE:
+		emit_signal("tree_grown", self)
+		$LevelTimer.stop()

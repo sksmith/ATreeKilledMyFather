@@ -36,6 +36,7 @@ func _process(delta):
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
 
+	_set_can_plant()
 #	if velocity.length() > 0:
 #		velocity = velocity.normalized() * speed
 #		$AnimatedSprite.play()
@@ -64,11 +65,12 @@ func _start_planting_cooldown():
 	_set_can_plant()
 
 func _on_ForestCursor_area_entered(_area):
-	_set_can_plant()
-
+	pass
+	# _set_can_plant()
 
 func _on_ForestCursor_area_exited(_area):
-	_set_can_plant()
+	pass
+	# _set_can_plant()
 
 func _set_can_plant():
 	if on_cooldown:

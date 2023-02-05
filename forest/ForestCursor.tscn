@@ -36,20 +36,18 @@ height = 14.0
 
 [node name="ForestCursor" type="Area2D"]
 collision_layer = 65536
-collision_mask = 65537
+collision_mask = 65536
 input_pickable = false
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
 cursor_speed = 600
-fine_cursor_speed = 300
 tree_resource = ExtResource( 6 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "no"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

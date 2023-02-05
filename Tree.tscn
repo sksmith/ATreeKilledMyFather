@@ -76,7 +76,6 @@ frame = 4
 playing = true
 
 [node name="TreeCollisionShape" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( -2, -4 )
 shape = SubResource( 1 )
 script = SubResource( 2 )

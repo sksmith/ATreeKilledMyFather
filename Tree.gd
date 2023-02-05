@@ -1,5 +1,7 @@
 extends Area2D
 
+signal tree_grown(tree)
+
 export var hit_points = 5
 var phase = 1
 const MAX_PHASE = 3
@@ -21,9 +23,9 @@ func hit(damage: int):
 		queue_free()
 
 func _on_LevelTimer_timeout():
-	if phase >= MAX_PHASE:
-		return
-	
 	phase += 1
-	print("tree increased phase ", str(phase-1), " -> ", str(phase))
 	$TreeSprite.animation = "phase" + str(phase)
+	
+	if phase >= MAX_PHASE:
+		emit_signal("tree_grown", self)
+		$LevelTimer.stop()

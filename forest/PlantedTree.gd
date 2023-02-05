@@ -1,31 +1,14 @@
 extends Node2D
 
-#export(NodePath) var my_tree
-#export(NodePath) var my_planting_range
-#
-#var my_tree_node
-#var my_planting_range_node
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+export var start_grown = false
 
-
-# Called when the node enters the scene tree for the first time.
-#func _ready():
-#	pass
-#	my_tree_node = get_node(my_tree)
-#	my_planting_range_node = get_node(my_planting_range)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
+func _ready():
+	if start_grown:
+		$Tree.set_phase($Tree.MAX_PHASE)
 
 func _on_Tree_tree_grown(tree):
 	if tree == $Tree:
 		$PlantingRange.enable_planting()
-
 
 func _on_Tree_tree_died(tree):
 	if tree == $Tree:

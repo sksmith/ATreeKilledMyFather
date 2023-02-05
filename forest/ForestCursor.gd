@@ -57,6 +57,7 @@ func _try_plant_tree():
 
 func _do_plant_tree():
 	can_plant_tree = false
+	play_plant_seed_sound()
 	var tree = tree_resource.instance()
 	tree.position = position
 	tree_planting_node.add_child(tree)

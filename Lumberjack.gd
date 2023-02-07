@@ -46,7 +46,6 @@ func _physics_process(delta):
 				target_tree.hit(2)
 			
 				if target_tree.is_dead():
-					print("tree fall sound")
 					$TreeFall.play()
 	else:
 		var velocity = Input.get_vector("lj_aim_left", "lj_aim_right", "lj_aim_up", "lj_aim_down")
@@ -72,16 +71,15 @@ func _physics_process(delta):
 
 func update_target_tree():
 	var chosen_tree
-	for overlapped in $PivotPoint/LumberjackReticle.get_overlapping_areas():
-		if overlapped.get_parent() == target_tree:
-			chosen_tree = target_tree
-			break
-	
+
 	if chosen_tree == null:
 		for overlapped in $PivotPoint/LumberjackReticle.get_overlapping_areas():
-			if overlapped.get_parent().is_in_group("tree"):
-				chosen_tree = overlapped.get_parent()
+			if overlapped.get_parent() == target_tree:
+				chosen_tree = target_tree
 				break
+			
+			if chosen_tree == null && overlapped.get_parent().is_in_group("tree"):
+				chosen_tree = overlapped.get_parent()
 	
 	if chosen_tree != target_tree:
 		if target_tree != null && is_instance_valid(target_tree):

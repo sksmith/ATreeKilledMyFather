@@ -22,5 +22,9 @@ func _process(_delta):
 		get_tree().quit()
 
 func _on_HeartTree_heart_tree_died():
-	get_tree().paused = true
-	
+	global.winner = global.LUMBERJACK
+	get_tree().change_scene("res://WinScreen.tscn")
+
+func _on_ForestCursor_cabin_destroyed():
+	global.winner = global.HEARTTREE
+	get_tree().change_scene("res://WinScreen.tscn")

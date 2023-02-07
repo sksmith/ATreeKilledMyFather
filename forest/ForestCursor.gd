@@ -8,6 +8,8 @@ export(NodePath) var tree_parent_node
 export(float) var planting_cooldown: float = 1.5
 export var seed_drop_sounds: Array
 
+signal cabin_destroyed()
+
 var r = RandomNumberGenerator.new()
 var screen_size # Size of the game window.
 var can_plant_tree = false
@@ -56,6 +58,10 @@ func _try_plant_tree():
 		print("nope! can't plant")
 
 func _do_plant_tree():
+	if _is_planting_on_cabin():
+		emit_signal("cabin_destroyed")
+		pass
+	
 	can_plant_tree = false
 	play_plant_seed_sound()
 	var tree = tree_resource.instance()
@@ -101,6 +107,14 @@ func _can_plant():
 			in_planting_range = true
 
 	return in_planting_range && !in_tree
+
+func _is_planting_on_cabin():
+	var areas = get_overlapping_areas()
+	for a in areas:
+		if a.is_in_group("cabin"):
+			return true
+
+	return false
 
 func play_plant_seed_sound():
 	$PlantSeedSound.stream = seed_drop_sounds[r.randi() % seed_drop_sounds.size()]

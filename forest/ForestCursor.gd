@@ -1,6 +1,5 @@
 extends Area2D
 
-
 export var cursor_speed = 400 # How fast the player will move (pixels/sec).
 export var fine_cursor_speed = 200
 export(Resource) var tree_resource
@@ -15,18 +14,32 @@ var screen_size # Size of the game window.
 var can_plant_tree = false
 var tree_planting_node
 var on_cooldown = false
+var prev_velocity = Vector2.ZERO # Stored for puppet-side prediction
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
+	set_network_master(global.heart_tree_player_id)
+	
 	var sprite_frames = $AnimatedSprite.get_sprite_frames()
 	var cooldown_frames = sprite_frames.get_frame_count("cooldown")
 	var cooldown_speed = cooldown_frames / float(planting_cooldown)
+	
 	sprite_frames.set_animation_speed("cooldown", cooldown_speed)
 	if tree_parent_node:
 		tree_planting_node = get_node(tree_parent_node)
 
 func _process(delta):
+	
+	if global.is_mp() && !is_network_master():
+		if prev_velocity != Vector2.ZERO:
+			position += prev_velocity * delta
+			position.x = clamp(position.x, 0, screen_size.x)
+			position.y = clamp(position.y, 0, screen_size.y)
+		
+		_set_can_plant()
+		return
+
 	var prepare_plant = Input.is_action_pressed("f_action")
 	var do_plant = Input.is_action_just_released("f_action")
 	
@@ -43,21 +56,25 @@ func _process(delta):
 	position += velocity * delta
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
-
+	
+	if global.is_mp():
+		rpc("_update_position", position, velocity)
+	
 	_set_can_plant()
-#	if velocity.length() > 0:
-#		velocity = velocity.normalized() * speed
-#		$AnimatedSprite.play()
-#	else:
-#		$AnimatedSprite.stop()
+
+puppet func _update_position(pos: Vector2, vel: Vector2):
+	position = pos
+	prev_velocity = vel
 
 func _try_plant_tree():
 	if can_plant_tree:
 		_do_plant_tree()
+		if global.is_mp():
+			rpc("_do_plant_tree")
 	else:
 		print("nope! can't plant")
 
-func _do_plant_tree():
+puppetsync func _do_plant_tree():
 	if _is_planting_on_cabin():
 		emit_signal("cabin_destroyed")
 		pass

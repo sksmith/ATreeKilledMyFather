@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/font/impact.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://GameMode.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 64
+font_data = ExtResource( 1 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="Local" type="Button" parent="."]
+margin_left = 939.0
+margin_top = 267.0
+margin_right = 1090.0
+margin_bottom = 352.0
+custom_fonts/font = SubResource( 1 )
+text = "Local"
+
+[node name="Host" type="Button" parent="."]
+margin_left = 938.0
+margin_top = 391.0
+margin_right = 1091.0
+margin_bottom = 476.0
+custom_fonts/font = SubResource( 1 )
+text = "Host"
+
+[node name="Join" type="Button" parent="."]
+margin_left = 941.0
+margin_top = 526.0
+margin_right = 1094.0
+margin_bottom = 611.0
+custom_fonts/font = SubResource( 1 )
+text = "Join"
+
+[node name="WaitingForPlayer" type="Label" parent="."]
+visible = false
+margin_left = 580.0
+margin_top = 393.0
+margin_right = 1430.0
+margin_bottom = 472.0
+custom_fonts/font = SubResource( 2 )
+text = "Waiting for the other player to join..."
+
+[connection signal="pressed" from="Local" to="." method="_on_Local_pressed"]
+[connection signal="pressed" from="Host" to="." method="_on_Host_pressed"]
+[connection signal="pressed" from="Join" to="." method="_on_Join_pressed"]

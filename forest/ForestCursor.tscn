@@ -55,6 +55,7 @@ seed_drop_sounds = [ ExtResource( 14 ), ExtResource( 17 ), ExtResource( 13 ), Ex
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "no"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

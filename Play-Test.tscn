@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://HeartTree.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Cabin.tscn" type="PackedScene" id=2]
@@ -8,12 +8,16 @@
 [ext_resource path="res://assets/Background.png" type="Texture" id=6]
 [ext_resource path="res://assets/audio/music/Main Theme 0.2.ogg" type="AudioStream" id=7]
 [ext_resource path="res://forest/ForestCursor.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/font/impact.ttf" type="DynamicFontData" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 967, 10 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 11, 539 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 9 )
 
 [node name="Play" type="Node"]
 script = ExtResource( 5 )
@@ -112,6 +116,16 @@ shape = SubResource( 2 )
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 1930, 550 )
 shape = SubResource( 2 )
+
+[node name="DebugLabel" type="Label" parent="."]
+anchor_right = 0.12
+anchor_bottom = 0.057
+margin_left = 1704.0
+margin_top = 51.0
+margin_right = 1677.6
+margin_bottom = 29.44
+custom_fonts/font = SubResource( 3 )
+text = "Server"
 
 [connection signal="cabin_destroyed" from="World/ForestCursor" to="." method="_on_ForestCursor_cabin_destroyed"]
 [connection signal="heart_tree_died" from="World/YSort/HeartTree" to="." method="_on_HeartTree_heart_tree_died"]

@@ -18,6 +18,7 @@ func new_game():
 		$PlayTheme.play()
 
 func _process(_delta):
+	updateDebug()
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 
@@ -28,3 +29,18 @@ func _on_HeartTree_heart_tree_died():
 func _on_ForestCursor_cabin_destroyed():
 	global.winner = global.HEARTTREE
 	get_tree().change_scene("res://WinScreen.tscn")
+
+func updateDebug():
+	if $DebugLabel == null:
+		return
+	
+	if global.is_mp():
+		var debugText = "Network Player Id: " + str(get_tree().get_network_unique_id()) + "\n"
+		debugText += "Lumberjack Player Id: " + str(global.lumberjack_player_id) + "\n"
+		debugText += "Heart Tree Player Id: " + str(global.heart_tree_player_id) + "\n"
+		debugText += "Heart Tree Master: " + str(get_node("World/ForestCursor").get_network_master()) + "\n"
+		debugText += "Lumberjack Master: " + str(get_node("World/YSort/Lumberjack").get_network_master())
+		
+		$DebugLabel.set_text(debugText)
+	else:
+		$DebugLabel.set_text("local")

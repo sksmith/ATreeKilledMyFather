@@ -16,7 +16,7 @@ func _ready():
 	get_node("TargetArea/Phase2").disabled = true
 	get_node("TargetArea/Phase3").disabled = true
 
-func _process(delta):
+func _process(_delta):
 	pass
 #	if $TreeSprite.frame == 2:
 #		$TreeGrowthSound.play()

@@ -43,6 +43,7 @@ position = Vector2( 1815, 932 )
 
 [node name="HeartTree" parent="World/YSort" instance=ExtResource( 1 )]
 position = Vector2( 113, 191 )
+hit_points = 40
 
 [node name="Trees" type="YSort" parent="World/YSort"]
 
@@ -53,8 +54,38 @@ start_grown = true
 [node name="PlantedTree5" parent="World/YSort/Trees" instance=ExtResource( 3 )]
 position = Vector2( 1049, 195 )
 
+[node name="PlantedTree13" parent="World/YSort/Trees" instance=ExtResource( 3 )]
+position = Vector2( 582, 612 )
+
+[node name="PlantedTree12" parent="World/YSort/Trees" instance=ExtResource( 3 )]
+position = Vector2( 814, 322 )
+
 [node name="PlantedTree6" parent="World/YSort/Trees" instance=ExtResource( 3 )]
 position = Vector2( 932, 639 )
+
+[node name="PlantedTree14" parent="World/YSort/Trees" instance=ExtResource( 3 )]
+position = Vector2( 849, 830 )
+
+[node name="PlantedTree8" parent="World/YSort/Trees" instance=ExtResource( 3 )]
+position = Vector2( 1180, 492 )
+
+[node name="PlantedTree15" parent="World/YSort/Trees" instance=ExtResource( 3 )]
+position = Vector2( 1756, 352 )
+
+[node name="PlantedTree16" parent="World/YSort/Trees" instance=ExtResource( 3 )]
+position = Vector2( 1441, 222 )
+
+[node name="PlantedTree17" parent="World/YSort/Trees" instance=ExtResource( 3 )]
+position = Vector2( 976, 1020 )
+
+[node name="PlantedTree9" parent="World/YSort/Trees" instance=ExtResource( 3 )]
+position = Vector2( 1132, 885 )
+
+[node name="PlantedTree10" parent="World/YSort/Trees" instance=ExtResource( 3 )]
+position = Vector2( 1480, 481 )
+
+[node name="PlantedTree11" parent="World/YSort/Trees" instance=ExtResource( 3 )]
+position = Vector2( 1407, 671 )
 
 [node name="PlantedTree7" parent="World/YSort/Trees" instance=ExtResource( 3 )]
 position = Vector2( 567, 986 )

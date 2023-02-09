@@ -52,11 +52,11 @@ func _physics_process(delta):
 					$TreeFall.play()
 	else:
 		var velocity = Input.get_vector("lj_move_left", "lj_move_right", "lj_move_up", "lj_move_down")
-		
+
 		if velocity == Vector2.ZERO:
 			velocity = Input.get_vector("lj_aim_left", "lj_aim_right", "lj_aim_up", "lj_aim_down")
-
-		if velocity.length() > 0:
+		
+		if velocity != Vector2.ZERO:
 			$PivotPoint.rotation = velocity.angle()  #local with local axis
 			velocity = velocity * speed
 		
@@ -69,7 +69,7 @@ func _physics_process(delta):
 		else:
 			_stop_walk()
 
-	if !is_attacking && Input.is_action_pressed("attack"):
+	if !is_attacking && Input.is_action_pressed("lj_attack"):
 		_do_attack()
 
 func _do_attack():

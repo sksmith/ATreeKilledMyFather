@@ -25,7 +25,7 @@ func _process(delta):
 	update_target_tree()
 
 func _physics_process(delta):
-	if !is_attacking && Input.is_action_pressed("attack"):
+	if !is_attacking && Input.is_action_pressed("lj_attack"):
 		is_attacking = true
 		play_grunt_sound()
 		current_attack_time = 0
@@ -48,9 +48,12 @@ func _physics_process(delta):
 				if target_tree.is_dead():
 					$TreeFall.play()
 	else:
-		var velocity = Input.get_vector("lj_aim_left", "lj_aim_right", "lj_aim_up", "lj_aim_down")
+		var velocity = Input.get_vector("lj_move_left", "lj_move_right", "lj_move_up", "lj_move_down")
 
-		if velocity.length() > 0:
+		if velocity == Vector2.ZERO:
+			velocity = Input.get_vector("lj_aim_left", "lj_aim_right", "lj_aim_up", "lj_aim_down")
+		
+		if velocity != Vector2.ZERO:
 			$PivotPoint.rotation = velocity.angle()  #local with local axis
 			velocity = velocity * speed
 		
